@@ -1,0 +1,2 @@
+import type {MetadataRoute} from "next";import {works} from "@/data/works";import {CANONICAL_ORIGIN} from "./seo";
+export default function sitemap():MetadataRoute.Sitemap{const lastModified=new Date("2026-08-24");return [{url:`${CANONICAL_ORIGIN}/`,lastModified,changeFrequency:"weekly",priority:1},{url:`${CANONICAL_ORIGIN}/works`,lastModified,changeFrequency:"monthly",priority:.9},...works.map(work=>({url:`${CANONICAL_ORIGIN}/works/${work.slug}`,lastModified,changeFrequency:"monthly" as const,priority:.8}))]}
