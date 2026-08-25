@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "field-dx-studio",
+  "compatibility_date": "2026-08-25",
+  "compatibility_flags": ["nodejs_compat"],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "field-dx-studio",
+      "database_id": "7b0fdd60-dee4-48bb-88f6-50d36d71b8b1",
+      "migrations_dir": "drizzle"
+    }
+  ]
+}

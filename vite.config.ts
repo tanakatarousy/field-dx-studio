@@ -17,6 +17,11 @@ const localBindingConfig = {
       database_id: process.env.CLOUDFLARE_D1_DATABASE_ID ?? SITE_CREATOR_PLACEHOLDER_DATABASE_ID,
     },
   ],
+  vars: {
+    ADMIN_EMAILS: process.env.ADMIN_EMAILS ?? "",
+    CF_ACCESS_TEAM_DOMAIN: process.env.CF_ACCESS_TEAM_DOMAIN ?? "",
+    CF_ACCESS_AUD: process.env.CF_ACCESS_AUD ?? "",
+  },
 };
 
 export default defineConfig(async () => {
