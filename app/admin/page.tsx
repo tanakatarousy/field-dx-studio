@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { requireChatGPTUser, chatGPTSignOutPath } from "@/app/chatgpt-auth";
-import { isAdminEmail } from "@/lib/admin-auth";
+import { headers } from "next/headers";
+import { getAdminEmailFromHeaders } from "@/lib/admin-auth";
 import { AdminDashboard } from "./admin-dashboard";
 
 export const dynamic = "force-dynamic";
@@ -11,16 +11,18 @@ export const metadata: Metadata = {
 };
 
 export default async function AdminPage() {
-  const user = await requireChatGPTUser("/admin");
+  const requestHeaders = await headers();
+  const adminEmail = await getAdminEmailFromHeaders(requestHeaders);
 
-  if (!(await isAdminEmail(user.email))) {
+  if (!adminEmail) {
     return (
       <main className="admin-shell admin-denied">
-        <p>このアカウントには管理権限がありません。</p>
-        <a href={chatGPTSignOutPath("/admin")}>別のアカウントで入り直す</a>
+        <p>管理者認証が必要です。</p>
+        <p>Cloudflare Accessで許可された管理者アカウントから開いてください。</p>
+        <a href="/">公開サイトへ戻る</a>
       </main>
     );
   }
 
-  return <AdminDashboard displayName={user.displayName} />;
+  return <AdminDashboard displayName={adminEmail} />;
 }

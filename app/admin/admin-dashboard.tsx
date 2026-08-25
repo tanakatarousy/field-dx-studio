@@ -216,7 +216,7 @@ export function AdminDashboard({ displayName }: { displayName: string }) {
     <main className="admin-shell">
       <header className="admin-header">
         <div><Link href="/" className="admin-brand">現場DX設計室</Link><span>ADMIN CONSOLE</span></div>
-        <div className="admin-account"><span>{displayName}</span><a href="/signout-with-chatgpt?return_to=/">ログアウト</a></div>
+        <div className="admin-account"><span>{displayName}</span><a href="/cdn-cgi/access/logout">ログアウト</a></div>
       </header>
 
       <section className="admin-titlebar">
